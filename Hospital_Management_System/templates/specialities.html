@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Specialities {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="card-deck">
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static 'images/cardiacsciences.png' %}" alt="Cardiac Sciences">
+            <div class="card-body">
+                <h6 class="card-title">CARDIAC SCIENCES</h6>
+                </div>
+        </div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/oncology.png' %}" alt="Cancer Care/Oncology">
+            <div class="card-body">
+                <h6 class="card-title">CANCER CARE/ONCOLOGY</h6>
+               </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/neurosciences.png' %}" alt="Neurosciences">
+            <div class="card-body">
+                <h6 class="card-title">NEUROSCIENCES</h6>
+                </div>
+        </div>
+        <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/orthopaedics.png' %}" alt="Orthopaedics">
+            <div class="card-body">
+                <h6 class="card-title">ORTHOPAEDICS & JOINT REPLACEMENT</h6>
+                </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+         <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/urology.png' %}" alt="Urology">
+            <div class="card-body">
+                <h6 class="card-title">UROLOGY</h6>
+                 </div>
+        </div>
+        <div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/livertransplant.png' %}" alt="Liver Transplant and Biliary Sciences">
+            <div class="card-body">
+                <h6 class="card-title">LIVER TRANSPLANT AND BILIARY SCIENCES</h6>
+                </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/kidneytransplant.png' %}" alt="Kidney Transplant">
+            <div class="card-body">
+                <h6 class="card-title">KIDNEY TRANSPLANT</h6>
+                 </div>
+        </div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/bonemarrow.png' %}" alt="Bone Marrow Transplant">
+            <div class="card-body">
+                <h6 class="card-title">BONE MARROW TRANSPLANT</h6>
+                </div>
+        </div>
+        <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+        <div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/dental.png' %}" alt="Dental Care">
+            <div class="card-body">
+                <h6 class="card-title">DENTAL CARE</h6>
+                 </div>
+        </div>
+        <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+        <div class="card mb-4">
+            <img class="card-img-top img-fluid" src="{% static '/images/emergency.png' %}" alt="Emergency and Trauma">
+            <div class="card-body">
+                <h6 class="card-title">EMERGENCY & TRAUMA</h6>
+                 </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

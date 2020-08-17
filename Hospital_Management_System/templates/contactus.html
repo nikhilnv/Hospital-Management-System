@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Contact Us {% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+          {% if messages %}
+          {% for message in messages %}
+           <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+          {% endfor %}
+          {% endif %}
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">ENQUIRY FORM</h5>
+            <form class="form-contactus" action="{% url 'contactus' %}" method="post">
+
+                {% csrf_token %}
+              <label class="label-contactus">Type Of Query</label>
+              <br>
+
+                {% for choice in form.type_of_query %}
+                <div class="form-check form-check-inline">
+                    <span class="radio">{{ choice.tag }}</span>
+                {{ choice.choice_label }}
+                </div>
+                {% endfor %}
+                 <br>
+                 <br>
+                {% for error in form.name.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+              <div class="form-label-group">
+                  {{form.name}}
+                  <label for="inputName" class="label-contactus">Name</label>
+              </div>
+              <div class="form-label-group">
+                {{form.email}}
+                  <label for="inputEmail" class="label-contactus">Email</label>
+              </div>
+                {% for error in form.phone.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+              <div class="form-label-group">
+                  {{form.phone}}
+                  <label for="inputPhone" class="label-contactus">Phone</label>
+                </div>
+                <div class="form-group">
+                    <label for="inputComments" class="label-contactus">Comments</label>
+                {{form.comments}}
+                </div>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">SUBMIT</button>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

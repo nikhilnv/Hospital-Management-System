@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Schedule Date and Time {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+  <div class="container_progressbar">
+    <ul class="progressbar">
+        <li class="active">Details</li>
+        <li>Select Date and Time</li>
+        <li>Select Doctor</li>
+        <li>Book Appointment</li>
+</ul>
+</div>
+ </div>
+
+    <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">DETAILS</h5>
+            <form class="form-signin" action="{% url 'scheduledoctor' %}" method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                <label>Speciality</label>
+                <div class="form-label-group">
+                    {{form.speciality}}
+                  </div>
+
+                 <label>Date (YYYY--MM--DD)</label>
+                <div class="form-label-group">
+                    {{form.date}}
+                  </div>
+                <label>Time</label>
+                <div class="form-label-group">
+                    {{form.time}}
+                  </div>
+                <div class="form-label-group">
+                    {{form.day}}
+                    <label for="inputDay">Weekday</label>
+                  </div>
+                 <hr class="my-4">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Next</button>
+                <a class="d-block text-center mt-2 large" style="color:red;text-decoration:none" href="{% url 'scheduledetails' %}">BACK</a>
+                </form>
+          </div>
+        </div>
+      </div>
+</div>
+
+</div>
+
+</html>
+<script>
+function getWeekDay(){
+var v = document.getElementById("datepicker").value;
+    console.log(v)
+    var n = v.split('-');
+    console.log(n)
+    var y = n[2];
+    var m = n[1]-1;
+    var d = n[0];
+    var g = new Date(d,m,y);
+    var weekday = new Array(7);
+         weekday[0] = "sunday";
+        weekday[1] = "monday";
+        weekday[2] = "tuesday";
+         weekday[3] = "wednesday";
+         weekday[4] = "thursday";
+         weekday[5] = "friday";
+         weekday[6] = "saturday";
+    var wd = weekday[g.getDay()];
+    console.log(wd);
+    document.getElementById('inputDay').value = wd;
+}
+</script>
+<script>$( document ).ready( getWeekDay );</script>
+
+{% endblock %}

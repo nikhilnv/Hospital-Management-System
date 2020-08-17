@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Schedule Doctor {% endblock %}
+
+{% block content %}
+
+
+ <div class="container">
+  <div class="row">
+  <div class="container_progressbar">
+    <ul class="progressbar">
+        <li class="active">Details</li>
+        <li class="active">Select Date and Time</li>
+        <li>Select Doctor</li>
+        <li>Book Appointment</li>
+</ul>
+</div>
+ </div>
+
+     <div class="container">
+     <div class="row">
+    <table class="table table-hover table-bordered">
+        <thead class="thead_doctor">
+          <tr>
+            <th scope="col">Name</th>
+                  <th scope="col">Specialized</th>
+                  <th scope="col">Appointment Price</th>
+                  <th scope="col">Select</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for doctor in doctors %}
+          <tr>
+              <td>{{doctor.name}}</td>
+              <td>{{doctor.specialization}}</td>
+              <td>{{doctor.pay_per_appointment}}</td>
+              <td>
+                  <button class="btn btn-outline-primary" type="submit" data-toggle="modal" data-target="#exampleModal"
+                          data-doctorname="{{doctor.name}}" data-specialization="{{doctor.specialization}}"
+                          data-pay_per_appointment="{{doctor.pay_per_appointment}}">Select</button>
+                 </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+     </div>
+</div>
+
+     <!-- Modal Edit-->
+      <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">SELECTED DOCTOR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <form class="form-signin" action="{% url 'bookappointment' %}" method="post">
+                      {% csrf_token %}
+                    <div class="form-label-group">
+                        <input type="text" id="inputName" class="form-control" name="doctorname" readonly="readonly" value="" autocomplete="off" placeholder="Name" required >
+                        <label for="inputName">Name</label>
+                      </div>
+                      <div class="form-label-group">
+                        <input type="text" id="inputSpecialization" class="form-control" name="specialization" readonly="readonly" value="" autocomplete="off" placeholder="Specialization" required >
+                        <label for="inputSpecialization">Specialization</label>
+                      </div>
+                      <div class="form-label-group">
+                          <input type="text" id="inputPay_per_appointment" class="form-control" name="pay_per_appointment" readonly="readonly" value="" autocomplete="off" placeholder="Specialized" required >
+                          <label for="inputPay_per_appointment">Appointment Price</label>
+                        </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Next</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+
+
+<script>
+    $('#exampleModal').on('show.bs.modal', function(e) {
+
+        var doctorname = $(e.relatedTarget).data('doctorname');
+        var pay_per_appointment = $(e.relatedTarget).data('pay_per_appointment');
+        var specialization = $(e.relatedTarget).data('specialization');
+
+       $(e.currentTarget).find('input[name="doctorname"]').val(doctorname);
+        $(e.currentTarget).find('input[name="specialization"]').val(specialization);
+        $(e.currentTarget).find('input[name="pay_per_appointment"]').val(pay_per_appointment);
+        });
+    </script>
+
+{% endblock %}

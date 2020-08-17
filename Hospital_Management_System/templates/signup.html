@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+                 <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+              <img class="card-img-top img-fluid" src="{% static 'images/health.jpg' %}" alt="doctor">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center"><i class="fas fa-user-plus"></i> SIGN UP</h5>
+
+            <form class="form-signin" action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                {% for error in form.first_name.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                    {{form.first_name}}
+                    <label for="inputFirst_Name">First Name</label>
+                </div>
+                {% for error in form.last_name.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                    {{form.last_name}}
+                    <label for="inputLast_Name">Last Name</label>
+                </div>
+                {% for error in form.username.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                    {{form.username}}
+                    <label for="inputUsername">Username</label>
+                </div>
+                {% for error in form.email.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                    {{form.email}}
+                    <label for="inputEmail">Email</label>
+                </div>
+                {% for error in form.password.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+
+                <div class="form-label-group">
+                    {{form.password}}
+                    <label for="inputPassword">Password</label>
+                </div>
+
+
+
+              <hr class="my-4">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <a class="d-block text-center mt-2 small" style="text-decoration:none" href="{% url 'signin' %}">SIGN IN</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock%}

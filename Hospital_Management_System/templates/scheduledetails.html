@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} Schedule Details {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+  <div class="container_progressbar">
+    <ul class="progressbar">
+        <li>Details</li>
+        <li>Select Date and Time</li>
+        <li>Select Doctor</li>
+        <li>Book Appointment</li>
+</ul>
+</div>
+ </div>
+
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">DETAILS</h5>
+            <form class="form-signin" action="{% url 'scheduledatetime' %}" method="post">
+                {% csrf_token %}
+              <div class="form-label-group">
+                  {{form.username}}
+                  <label for="inputUsername">Username</label>
+                </div>
+                {% for error in form.patient_name.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+              <div class="form-label-group">
+                {{form.patient_name}}
+                  <label for="inputPatientName">Patient Name</label>
+              </div>
+              <label>Gender</label>
+              <br>
+              {% for choice in form.gender %}
+                <div class="form-check form-check-inline">
+                    <span class="radio">{{ choice.tag }}</span>
+                {{ choice.choice_label }}
+                </div>
+                {% endfor %}
+              <br>
+              <br>
+                {% for error in form.age.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                  {{form.age}}
+                    <label for="inputAge">Age</label>
+                </div>
+                <div class="form-label-group">
+                    {{form.email}}
+                    <label for="inputEmail">Email</label>
+                  </div>
+                {% for error in form.phone.errors %}
+                    <p class="text-danger">{{error}}</p>
+                    {% endfor %}
+                <div class="form-label-group">
+                    {{form.phone}}
+                    <label for="inputPhone">Phone</label>
+                  </div>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Next</button>
+
+             </form>
+          </div>
+        </div>
+      </div>
+</div>
+
+</div>
+
+{% endblock %}

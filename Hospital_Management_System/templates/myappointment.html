@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} My Appointments {% endblock %}
+
+{% block content %}
+{% if appointments %}
+<div class="container">
+     <div class="row">
+    <table class="table table-hover table-bordered">
+        <thead class="thead_doctor">
+          <tr>
+              <th scope="col">Username</th>
+              <th scope="col">Patient Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Booking Date</th>
+              <th scope="col">Booking Time</th>
+              <th scope="col">Booking Day</th>
+              <th scope="col">Doctor Name</th>
+              <th scope="col">Specialization</th>
+              <th scope="col">Appointment Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for appointment in appointments %}
+          <tr>
+              <td>{{appointment.username}}</td>
+              <td>{{appointment.patient_name}}</td>
+              <td>{{appointment.age}}</td>
+              <td>{{appointment.gender}}</td>
+              <td>{{appointment.email}}</td>
+              <td>{{appointment.phone}}</td>
+              <td>{{appointment.booking_date}}</td>
+              <td>{{appointment.booking_time}}</td>
+              <td>{{appointment.booking_day}}</td>
+              <td>{{appointment.doctor_name}}</td>
+              <td>{{appointment.specialization}}</td>
+              <td>{{appointment.appointment_price}}</td>
+
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+     </div>
+</div>
+{% else %}
+<div class="container">
+     <div class="row">
+         <h2 style="margin-top:13%;margin-left:14%">YOU HAVE NOT BOOKED ANY APPOINTMENTS YET.</h2>
+         <div>
+         </div>
+{% endif %}
+{% endblock %}
